@@ -1,0 +1,6 @@
+[submodule "Models/tabsyn"]
+	path = Models/tabsyn
+	url = https://github.com/amazon-science/tabsyn.git
+[submodule "Models/CTAB-GAN"]
+	path = Models/CTAB-GAN
+	url = https://github.com/Team-TUD/CTAB-GAN.git
