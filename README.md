@@ -1,5 +1,16 @@
 # syndataeval
-
+<pre>
+  
+  # Models/CTAB-GAN
+  git submodulde https://github.com/Team-TUD/CTAB-GAN.git
+  
+  # Models/FCT-GAN-main
+  https://github.com/ethan-keller/FCT-GAN/tree/main
+  
+  # Models/tabsyn
+  git submodulde https://github.com/amazon-science/tabsyn.git
+  
+</pre>
 ## tabsyn
 <pre>
   conda activate synthcity
