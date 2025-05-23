@@ -21,3 +21,9 @@ For Adult Dataset
   # after the VAE is trained, train the diffusion model
   python main.py --dataname credit --method tabsyn --mode train
 </pre>
+<pre>
+  # evaluation metrics
+   python eval/eval_quality_imputed.py --dataname credit_risk_dataset --model tabsyn --path synthetic/credit_risk_dataset/tabsyn.csv
+   python eval/eval_quality_imputed.py --dataname adult --model tabsyn --path synthetic/adult/tabsyn.csv
+
+</pre>
