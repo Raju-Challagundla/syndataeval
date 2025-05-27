@@ -33,7 +33,7 @@ For Adult Dataset
   python main.py --dataname credit --method tabsyn --mode train
 </pre>
 <pre>
-  # evaluation metrics
+  # evaluation metrics, execute from folder /tabsyn
    python eval/eval_quality_imputed.py --dataname credit_risk_dataset --model tabsyn --path synthetic/credit_risk_dataset/tabsyn.csv
    python eval/eval_quality_imputed.py --dataname adult --model tabsyn --path synthetic/adult/tabsyn.csv
 
