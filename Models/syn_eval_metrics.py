@@ -339,10 +339,10 @@ pategan_params = dict(
 )
 
 dpctgan_params = dict(
-    epsilon=1.0,
+    epsilon=0.5,
     delta=1e-5,
     batch_size=64,
-    epochs=150
+    epochs=100
 )
 # Initialize dictionaries to store all results
 all_fd_metrics = []
@@ -377,8 +377,8 @@ for dataset_name in ["adult","credit"]:
     # Evaluate all available models
     models_to_evaluate = [
         #("ctgan", CTGANSynthesizer, {'epochs': 150}),
-        ("pategan", PATEGAN, pategan_params),
-        #("dpctgan", DPCTGAN, dpctgan_params),
+        #("pategan", PATEGAN, pategan_params),
+        ("dpctgan", DPCTGAN, dpctgan_params),
         #("fctgan", FCTGAN, {}),
         #("ctabgan", CTABGAN, {}),
     ]
