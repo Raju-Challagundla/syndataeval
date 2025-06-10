@@ -12,7 +12,7 @@ from sklearn.metrics import accuracy_score, roc_auc_score,mutual_info_score
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import LabelEncoder, OrdinalEncoder
 from sklearn.utils.multiclass import type_of_target
-
+from scipy import stats
 
 class SyntheticDataMetrics:
     """
@@ -182,8 +182,8 @@ class SyntheticDataMetrics:
 
                 return {
                     'Accuracy': float(acc) if acc is not None else None,
-                    'AUROC': float(auroc) if auroc is not None else None,
-                    'Classes_used': str(common_labels)
+                    'AUROC': float(auroc) if auroc is not None else None
+                    #'Classes_used': str(common_labels)
                 }
             except Exception as e:
                 return {'Model inversion attack': f'Failed: {str(e)}'}
@@ -236,11 +236,32 @@ class SyntheticDataMetrics:
         auroc = roc_auc_score(y_test, y_pred_proba)
 
         return {"MIA_AUROC": auroc}
+    @staticmethod
+    def calculate_p_values(real_metrics, synth_metrics):
+        """Calculate p-values using Wilcoxon signed-rank test"""
+        p_values = {}
+        for metric in real_metrics[0].keys():
+            if metric == 'Classes' or metric == 'Target_range':
+                continue
+                
+            real_values = [trial.get(metric) for trial in real_metrics if trial.get(metric) is not None]
+            synth_values = [trial.get(metric) for trial in synth_metrics if trial.get(metric) is not None]
+            
+            if len(real_values) > 1 and len(synth_values) > 1:
+                try:
+                    _, p_value = stats.wilcoxon(real_values, synth_values)
+                    p_values[metric] = p_value
+                except:
+                    p_values[metric] = None
+            else:
+                p_values[metric] = None
+        return p_values
     
     @staticmethod
     def pearson_correlation_difference(real_df, synth_df, continuous_cols):
         """
         Calculate mean absolute difference in Pearson correlations for CONTINUOUS columns only.
+        Skips columns with zero variance to avoid NaN results.
         
         Args:
             real_df: DataFrame of real data
@@ -248,16 +269,25 @@ class SyntheticDataMetrics:
             continuous_cols: List of continuous column names
             
         Returns:
-            float: Mean absolute difference in correlation coefficients
+            float: Mean absolute difference in correlation coefficients (or NaN if no valid columns)
         """
-        common_cont = [col for col in continuous_cols if col in real_df.columns and col in synth_df.columns]
-        if not common_cont:
+        # Find common continuous columns with nonzero variance in BOTH datasets
+        common_cont = []
+        for col in continuous_cols:
+            if col in real_df.columns and col in synth_df.columns:
+                real_std = real_df[col].std()
+                synth_std = synth_df[col].std()
+                if real_std > 1e-10 and synth_std > 1e-10:  # Avoid numerical instability
+                    common_cont.append(col)
+        
+        if len(common_cont) < 2:  # Need at least 2 columns to compute correlation
             return np.nan
-            
+        
+        # Compute correlations only for valid columns
         real_corr = real_df[common_cont].corr(method='pearson').values
         synth_corr = synth_df[common_cont].corr(method='pearson').values
         
-        # Only consider upper triangle without diagonal
+        # Extract upper triangle (excluding diagonal)
         mask = np.triu_indices_from(real_corr, k=1)
         diff = np.abs(real_corr[mask] - synth_corr[mask])
         return np.mean(diff)
