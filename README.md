@@ -92,14 +92,14 @@ pip install smartnoise-synth
 To run experiments for **CTGAN**, **DPCTGAN**, **PATEGAN**, **CTAB-GAN**, and **FCT-GAN**, use:
 
 ```bash
-python experiments/syn_eval_benchmark_v2.py
+python syn_eval_benchmark_v2.py
 ```
 
 This script will:
 - Train models
 - Generate synthetic datasets
 - Compute utility, privacy, and statistical metrics
-- Save results in the `results/` directory
+- Save results in the `Experiment_Results/` directory
 
 > Make sure required models are downloaded via submodules beforehand.
 
@@ -163,7 +163,7 @@ python eval/eval_quality_imputed.py --dataname credit_risk_dataset --model tabsy
 To generate comparison plots from the benchmarking results, run:
 
 ```bash
-experiments/synth_plots.ipynb
+synth_plots.ipynb
 ```
 
 This script visualizes:
