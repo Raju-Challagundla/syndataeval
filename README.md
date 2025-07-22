@@ -171,7 +171,7 @@ This script visualizes:
 - Performance comparisons across models
 - Dataset-specific metric summaries
 
-Plots will be saved in the `results/plots/` directory.
+Plots will be saved in the `Experiment_Results/plots/` directory.
 
 ## Citation
 
