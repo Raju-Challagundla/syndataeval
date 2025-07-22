@@ -2,7 +2,7 @@
 
 This repository contains the experimental framework and benchmarking code used in our comprehensive survey on synthetic tabular data generation techniques. It provides a unified evaluation pipeline for comparing popular generative models across multiple datasets using a range of utility, statistical, and privacy metrics.
 
-## 🔍 Purpose
+## Purpose
 
 The goal of this repository is to support reproducible evaluation of state-of-the-art tabular data generators. It enables researchers and practitioners to:
 - Train and evaluate generative models on structured datasets
@@ -13,48 +13,48 @@ This benchmarking code was developed as part of our survey paper:
 
 > **Synthetic Tabular Data Generation: A Comparative Survey for Modern Techniques**  
 > [Raju Challagundla] • [University of North Carolina at Charlotte]  
-> 📄 [Link to paper](#https://www.arxiv.org/abs/2507.11590)
+> [Link to Paper](https://www.arxiv.org/abs/2507.11590)
 
-## 📦 Included Models
+## Included Models
 
 The following synthetic data generation models are supported:
 
 - **CTGAN** — Conditional GAN for tabular data [(SDV)](https://github.com/sdv-dev/CTGAN)
 - **PATEGAN** — Private Aggregation of Teacher Ensembles GAN [(smartnoise)](https://github.com/opendp/smartnoise-sdk)
 - **DPCTGAN** — Differentially Private Conditional Tabular GAN [(smartnoise)](https://github.com/opendp/smartnoise-sdk)
-- **FCTGAN** — Fully Conditional Tabular GAN [(original repo)](https://github.com/ethan-keller/FCT-GAN)
-- **CTAB-GAN+** — Conditional GAN with attention and mode-specific normalization [(Team-TUD)](https://github.com/Team-TUD/CTAB-GAN.git)
+- **FCTGAN** — Fourier Conditional Tabular GAN [(original repo)](https://github.com/ethan-keller/FCT-GAN)
+- **CTAB-GAN** — A novel conditional table GAN architecture that can effectively model diverse data types, including a mix of continuous and categorical variables [(Team-TUD)](https://github.com/Team-TUD/CTAB-GAN.git)
 - **Tabsyn** — Self-Attention based transformer for tabular synthetic data [(Amazon Science)](https://github.com/amazon-science/tabsyn)
 
 
-## 📊 Datasets
+## Datasets
 
 Experiments are conducted on widely-used benchmark datasets:
 - **Adult Income** (UCI)
 - **Credit Risk Default** (Kaggle)
 - (Extendable to additional tabular datasets)
 
-## 🧪 Evaluation Metrics
+## Evaluation Metrics
 
 We evaluate generated synthetic data on the following dimensions:
 
-### 🔹 Utility
+### Utility
 - Classifier performance 
 - Cross-dataset generalization (Train on synthetic, test on real and vice versa)
 
-### 🔹 Statistical Fidelity
+### Statistical Fidelity
 - Marginal distribution distance (e.g., KS-statistics)
 - Pairwise correlations
 - Feature importance overlap
 
-### 🔹 Privacy
+### Privacy
 - Membership Inference Attack (MIA)
 - Attribute Inference Attack (AIA)
 - Distance to Closest Record (DCR)
 
 All metrics include support for error bars (mean ± std) and significance testing via permutation-based p-values.
 
-## ⚙️ Structure
+## Structure
 
 ```bash
 syndataeval/
@@ -69,7 +69,6 @@ syndataeval/
 
 Clone the repo and initialize submodules:
 
-<pre>
 git clone https://github.com/Raju-Challagundla/syndataeval
 cd syndataeval
 
@@ -77,7 +76,6 @@ cd syndataeval
 git submodule add https://github.com/Team-TUD/CTAB-GAN.git models/CTAB-GAN
 git submodule add https://github.com/ethan-keller/FCT-GAN.git models/FCT-GAN-main
 git submodule add https://github.com/amazon-science/tabsyn.git models/tabsyn
-</pre>
 
 Install required Python packages:
 
@@ -103,21 +101,21 @@ This script will:
 - Compute utility, privacy, and statistical metrics
 - Save results in the `results/` directory
 
-> ✅ Make sure required models are downloaded via submodules beforehand.
+> Make sure required models are downloaded via submodules beforehand.
 
 ---
 
-## 🤖 Tabsyn Workflow (Run Separately)
+## Tabsyn Workflow (Run Separately)
 
 Tabsyn requires a different environment and execution flow.
 
-### 🔧 Environment Setup
+### Environment Setup
 
 ```bash
 conda activate synthcity
 ```
 
-### 🏋️‍♂️ Train Tabsyn
+### Train Tabsyn
 
 #### Adult Dataset
 
@@ -139,7 +137,7 @@ python main.py --dataname credit --method vae --mode train
 python main.py --dataname credit --method tabsyn --mode train
 ```
 
-### 📊 Evaluate Tabsyn
+### Evaluate Tabsyn
 
 From within the `models/tabsyn` folder:
 
@@ -160,7 +158,7 @@ python eval/eval_quality_imputed.py --dataname credit_risk_dataset --model tabsy
 - Privacy-Utility plots (optional)
 
 ---
-## 📉 Generating Plots
+## Generating Plots
 
 To generate comparison plots from the benchmarking results, run:
 
