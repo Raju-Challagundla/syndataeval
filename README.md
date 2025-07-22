@@ -12,8 +12,8 @@ The goal of this repository is to support reproducible evaluation of state-of-th
 This benchmarking code was developed as part of our survey paper:
 
 > **Synthetic Tabular Data Generation: A Comparative Survey for Modern Techniques**  
-> [Raju Challagundla] • [University of North Carolina at Charlotte]  
-> [Link to Paper](#https://www.arxiv.org/abs/2507.11590)
+> [Raju Challagundla] et .al • [University of North Carolina at Charlotte]  
+> [Read the paper on arXiv](https://www.arxiv.org/abs/2507.11590)
 
 ## Included Models
 
