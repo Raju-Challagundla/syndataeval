@@ -178,14 +178,11 @@ Plots will be saved in the `Experiment_Results/plots/` directory.
 If you use this codebase or the survey in your work, please cite:
 
 ```bibtex
-@misc{challagundla2025synthetictabulardatageneration,
-      title={Synthetic Tabular Data Generation: A Comparative Survey for Modern Techniques}, 
-      author={Raju Challagundla and Mohsen Dorodchi and Pu Wang and Minwoo Lee},
-      year={2025},
-      eprint={2507.11590},
-      archivePrefix={arXiv},
-      primaryClass={cs.LG},
-      url={https://arxiv.org/abs/2507.11590}, 
+@article{challagundla2025synthetic,
+  title={Synthetic Tabular Data Generation: A Comparative Survey for Modern Techniques},
+  author={Challagundla, Raju and Dorodchi, Mohsen and Wang, Pu and Lee, Minwoo},
+  journal={arXiv preprint arXiv:2507.11590},
+  year={2025}
 }
 ```
 
