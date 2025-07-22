@@ -13,7 +13,7 @@ This benchmarking code was developed as part of our survey paper:
 
 > **Synthetic Tabular Data Generation: A Comparative Survey for Modern Techniques**  
 > [Raju Challagundla] • [University of North Carolina at Charlotte]  
-> [Link to Paper](https://www.arxiv.org/abs/2507.11590)
+> [Link to Paper](#https://www.arxiv.org/abs/2507.11590)
 
 ## Included Models
 
@@ -65,7 +65,7 @@ syndataeval/
 
 ---
 
-## 📁 Repository Setup
+## Repository Setup
 
 Clone the repo and initialize submodules:
 
@@ -89,7 +89,7 @@ pip install smartnoise-synth
 
 ## Run Main Benchmark
 
-To run experiments for **CTGAN**, **DPCTGAN**, **PATEGAN**, **CTAB-GAN**, and **FCT-GAN**, use:
+To run experiments for CTGAN, DPCTGAN, PATEGAN, CTAB-GAN, and FCT-GAN, use:
 
 ```bash
 python syn_eval_benchmark_v2.py
